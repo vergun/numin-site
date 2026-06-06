@@ -1,0 +1,327 @@
+/* ============================================================
+   NUMIN — placeholder
+   The quantitative finance practice of Verdi Ergün.
+   Light, clean, mostly negative space.
+   ============================================================ */
+
+/* real Lota Grotesque, from the 2022 site */
+@font-face {
+  font-family: "Lota Grotesque";
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/LotaGrotesque-ExLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Lota Grotesque";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/LotaGrotesque-Light.woff2") format("woff2");
+}
+
+:root {
+  --paper:    #ffffff;   /* clean white, per 2022 */
+  --paper-2:  #f3f3f6;
+  --ink:      #000000;   /* title — pure black, per 2022 */
+  --gray:     #676767;   /* subtitle gray, per 2022 */
+  --indigo:   #18186a;   /* description / brand accent, per 2022 */
+  --ink-70:   #45433b;
+  --ink-45:   #827e72;
+  --ink-25:   #bbb5a7;
+  --hair:     rgba(20, 19, 15, 0.13);
+  --hair-soft:rgba(20, 19, 15, 0.06);
+  --accent:   #18186a;
+
+  --font-display: "Lota Grotesque", "Outfit", system-ui, sans-serif;
+  --font-body:    "Lota Grotesque", "Outfit", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+  --maxw: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+.grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--ink-45);
+}
+
+a { color: inherit; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- header ---------- */
+header.nav { z-index: 20; }
+header.nav .wrap {
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+}
+.logo img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+.contact-link {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  text-decoration: none;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.28);
+  padding-bottom: 3px;
+  transition: border-color 0.25s ease, opacity 0.25s ease;
+  opacity: 0.78;
+}
+.contact-link:hover { opacity: 1; border-bottom-color: var(--ink); }
+.contact-link .dotmark { display: none; }
+
+/* ---------- main / hero (2022: lockup top-left, big centered rorschach) ---------- */
+main {
+  display: block;
+  position: relative;
+  z-index: 2;
+  padding: 18px 0 72px;
+}
+.hero { width: 100%; }
+.lockup { max-width: 720px; }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+.eyebrow .tick { width: 26px; height: 1px; background: var(--ink-45); }
+
+/* title + subtitle: both ExLight, same scale (2022 = 64/70) */
+.hero .title,
+.hero .subtitle {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(33px, 4.4vw, 56px);
+  line-height: 1.085;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+}
+.hero .title { color: var(--ink); }
+.hero .subtitle {
+  margin-top: 0.18em;
+  color: var(--gray);
+}
+.hero .description {
+  margin: 26px 0 0;
+  font-weight: 300;
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.34;
+  color: var(--indigo);
+  max-width: 540px;
+  letter-spacing: -0.005em;
+}
+
+/* rorschach graphic — the real 2022 inkblot, centered below the lockup */
+.graphic {
+  position: relative;
+  margin: 56px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ink-img {
+  width: min(600px, 86vw);
+  height: auto;
+  display: block;
+  mix-blend-mode: multiply;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ink-img { animation: inkdrift 16s ease-in-out infinite; }
+}
+@keyframes inkdrift {
+  0%, 100% { transform: scale(1) translateY(0) rotate(0deg); }
+  50%      { transform: scale(1.02) translateY(-6px) rotate(0.25deg); }
+}
+.ink-caption {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* personal / not-a-fund notice */
+.notice {
+  margin-top: 28px;
+  max-width: 46ch;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-45);
+  padding-left: 16px;
+  border-left: 1px solid var(--hair);
+  letter-spacing: -0.003em;
+}
+.notice strong { color: var(--indigo); font-weight: 600; }
+
+footer .fnote { color: var(--ink-70); }
+
+/* meta row of focus areas */
+.focus {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--hair);
+}
+.focus .f {
+  padding: 26px 28px 0 0;
+}
+.focus .f .k {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.focus .f h3 {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+.focus .f p {
+  margin: 8px 0 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-45);
+  max-width: 30ch;
+}
+
+/* ---------- footer ---------- */
+footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--hair);
+}
+footer .wrap {
+  padding-top: 28px;
+  padding-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+footer .mono { font-size: 11.5px; letter-spacing: 0.1em; }
+footer a.mono { text-decoration: none; cursor: pointer; transition: color 0.25s ease; }
+footer a.mono:hover { color: var(--ink); }
+
+/* ---------- reveals ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.07s; }
+.reveal.d2 { transition-delay: 0.14s; }
+.reveal.d3 { transition-delay: 0.21s; }
+.reveal.d4 { transition-delay: 0.28s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .wrap { padding: 0 28px; }
+  header.nav .wrap { height: 72px; }
+  .lockup { max-width: none; }
+  .graphic { margin-top: 44px; }
+  .ink-img { width: min(440px, 82vw); }
+  .notice { max-width: none; }
+  main { padding: 8px 0 52px; }
+  footer .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .wrap { padding: 0 22px; }
+  header.nav .wrap { height: 64px; }
+  .logo img { height: 19px; }
+  .contact-link { font-size: 15px; }
+  .hero .title,
+  .hero .subtitle {
+    font-size: clamp(31px, 8.7vw, 44px);
+    line-height: 1.1;
+  }
+  .hero .subtitle { margin-top: 0.34em; }
+  .hero .description {
+    font-size: 17px;
+    line-height: 1.4;
+    margin-top: 22px;
+  }
+  .notice {
+    margin-top: 26px;
+    font-size: 13px;
+  }
+  .graphic { margin-top: 36px; }
+  .ink-img { width: 88vw; }
+  .ink-caption { font-size: 10px; bottom: -14px; }
+  main { padding: 4px 0 44px; }
+}
